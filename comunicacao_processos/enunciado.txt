@@ -1,0 +1,7 @@
+Faça um programa que cria dois processos filhos.
+    • O programa deve criar um segmento de memória
+      compartilhado que contém um inteiro.
+        o Este inteiro deve ser inicializado com um valor
+          qualquer.
+    • Este inteiro deve ser incrementado pelo filho 1 e em
+      seguida multiplicado por 2 pelo filho 2.
