@@ -28,23 +28,26 @@ int main () {
     filho1 = fork();
     if (filho1 == 0) {
         printf("Processo filho1 iniciado - PID: %d\n", getpid());
+        mem = shmat(seg_id, NULL, 0);
         implentacao_filho1(mem);
         printf("filho1 finalizou - PID: %d - inteiro: %d\n", getpid(), *mem);
-
+        
         shmdt(mem); /*desanexa memória compartilhada*/
         exit(0);
     }
-
+    
+    waitpid(filho1, NULL, 0);
     filho2 = fork();
+    
     if (filho2 == 0) {
         printf("Processo filho2 criado - PID: %d\n", getpid());
+        mem = shmat(seg_id, NULL, 0);
         implentacao_filho2(mem);
         printf("filho2 finalizou - PID: %d - inteiro: %d\n", getpid(), *mem);
 
         shmdt(mem);
         exit(0);
     } else {
-        waitpid(filho1, NULL, 0);
         waitpid(filho2, NULL, 0);
 
         printf("Processo PAI finalizado, inteiro armazenado: %d\n", *mem);
