@@ -1,10 +1,10 @@
-# Comunicação entre Processos com Pipe
+# Comunicação entre Processos em C
 
-Exemplos simples de comunicação entre processos em C.
+Exemplos simples de comunicação entre processos por memória compartilhada e pipes em C.
 
 ## Objetivo
 
-Demonstrar o compartilhamento por **Memória compartilhada** e **pipes** no qual:
+Demonstrar a comunicação por **Memória Compartilhada** e **Pipes**:
 
 * **Memória compartilhada** permite que processos compartilhem e alterem dados através de uma região de memória comum.
 * **Pipe anônimo** permite a comunicação unidirecional entre processos através de um canal de leitura e escrita.
@@ -18,7 +18,7 @@ Demonstrar o compartilhamento por **Memória compartilhada** e **pipes** no qual
 ```bash
 gcc -Wall -Wextra comunicacao_processos/comunicacao_processos.c -o comunicacao_processos/comunicacao_processos && ./comunicacao_processos/comunicacao_processos
 ```
-### Comunicação de Processos por pipes
+### Comunicação de Processos por Pipes
 ```bash
 gcc -Wall -Wextra pipes/pipes.c -o pipes/pipes && ./pipes/pipes 'Olá, mundo!'
 ```
@@ -60,9 +60,14 @@ Processo pai encerrado!
 ## Conceitos utilizados
 
 * `fork()` — criação do processo filho.
+* `wait()` — espera pelo término do processo filho.
+* `sleep()` — processo "hiberna" por tempo determinado em segundos.
+* `shmget()` — cria ou obtém um segmento de memória compartilhada, retornando seu identificador.
+* `shmat()` — anexa o segmento de memória compartilhada ao espaço de endereçamento do processo. // permite acesso
+* `shmdt()` — desanexa o segmento de memória compartilhada do espaço de endereçamento do processo. // revoga acesso
+* `shmctl()` — remove o segmento de memória compartilhada após seu uso.
 * `pipe()` — criação do canal de comunicação.
 * `write()` — escrita de dados no pipe.
 * `read()` — leitura de dados do pipe.
-* `close()` — fechamento dos descritores não utilizados.
-* `wait()` — espera pelo término do processo filho.
+* `close()` — fechamento dos descritores.
 * **EOF** — ocorre quando o extremo de escrita do pipe é fechado e não existem mais escritores.
