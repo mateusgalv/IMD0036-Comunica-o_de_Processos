@@ -1,0 +1,11 @@
+• Utilizando comunicação entre processos, escreva
+  um programa que realiza a soma dos N primeiros
+  números naturais. O valor de N é passado como
+  argumento do programa (argc, argv)
+    o Cada soma deve ser realizada por um processo filho.
+      Ou seja, se o valor de N for 3, deverão ser criados 3
+      filhos.
+    o A primeira, soma serã feita pelo filho, a proxima soma
+      pelo filho do filho e assim por diante...
+    o O filho N realiza a ultima soma e o pai escreve o
+      resultado final.
